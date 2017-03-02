@@ -6,6 +6,8 @@ set -o pipefail   # don't ignore exit codes when piping output
 # Configure directories
 build_dir=$1
 
+rake db:migrate
+
 if [ -z "$DEPLOY_TASKS" ]; then
   echo "DEPLOY_TASKS has not been set"
   echo "You can set it with:"
