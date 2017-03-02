@@ -8,8 +8,6 @@ build_dir=$1
 cache_dir=$2
 env_dir=$3
 
-echo $RAILS_ENV
-
 export "DATABASE_URL=$(cat $env_dir/DATABASE_URL)"
 export "RAILS_ENV=production"
 export "SECRET_KEY_BASE=$(cat $env_dir/SECRET_KEY_BASE)"
