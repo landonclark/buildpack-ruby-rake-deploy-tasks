@@ -5,6 +5,8 @@ set -o pipefail   # don't ignore exit codes when piping output
 
 # Configure directories
 build_dir=$1
+cd $build_dir
+
 echo '------> Running rake db:migrate'
 rake db:migrate
 
@@ -16,7 +18,6 @@ if [ -z "$DEPLOY_TASKS" ]; then
 fi
 
 tasks=(`echo ${DEPLOY_TASKS}`)
-cd $build_dir
 for task in ${tasks[@]}; do
   rake $task
 done
