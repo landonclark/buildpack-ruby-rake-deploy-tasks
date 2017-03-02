@@ -11,6 +11,7 @@ env_dir=$3
 export "DATABASE_URL=$(cat $env_dir/DATABASE_URL)"
 export "RAILS_ENV=production"
 export "SECRET_KEY_BASE=$(cat $env_dir/SECRET_KEY_BASE)"
+export "DEPLOY_TASKS=$(cat $env_dir/DEPLOY_TASKS)"
 
 cd $build_dir
 
