@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+set -e            # fail fast
+set -o pipefail   # don't ignore exit codes when piping output
+
+# Configure directories
+build_dir=$1
+
+if [ -z "$DEPLOY_TASKS" ]; then
+  echo "DEPLOY_TASKS has not been set"
+  echo "You can set it with:"
+  echo 'heroku config:set DEPLOY_TASKS="tasks to run"'
+  exit 0
+fi
+
+tasks=(`echo ${DEPLOY_TASKS}`)
+cd $build_dir
+for task in ${tasks[@]}; do
+  rake $task
+done
