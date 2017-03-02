@@ -5,19 +5,3 @@ set -o pipefail   # don't ignore exit codes when piping output
 
 # Configure directories
 build_dir=$1
-cd $build_dir
-
-echo '------> Running rake db:migrate'
-rake db:migrate
-
-if [ -z "$DEPLOY_TASKS" ]; then
-  echo "DEPLOY_TASKS has not been set"
-  echo "You can set it with:"
-  echo 'heroku config:set DEPLOY_TASKS="tasks to run"'
-  exit 0
-fi
-
-tasks=(`echo ${DEPLOY_TASKS}`)
-for task in ${tasks[@]}; do
-  rake $task
-done
