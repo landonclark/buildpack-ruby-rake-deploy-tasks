@@ -14,10 +14,6 @@ export "DATABASE_URL=$(cat $env_dir/DATABASE_URL)"
 export "RAILS_ENV=production"
 export "SECRET_KEY_BASE=$(cat $env_dir/SECRET_KEY_BASE)"
 
-echo $DATABASE_URL
-
-echo $RAILS_ENV
-
 cd $build_dir
 
 echo '------> Running rake db:migrate'
